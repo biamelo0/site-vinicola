@@ -177,45 +177,44 @@ export default function Home() {
         </div>
       </section>
 
-     {/* SHOWCASE */}
+{/* SHOWCASE */}
 <section className="showcase">
   {/* Marcas d'água de fundo */}
-  <div className="showcase__watermark-top">WINERY</div>
-  <div className="showcase__watermark-bottom">EST. 1968</div>
+  <div className="showcase__watermark showcase__watermark--top">WINERY</div>
+  <div className="showcase__watermark showcase__watermark--bottom">EST. 1968</div>
 
-  <div className="showcase__container">
-    {/* Texto acima do gargalo */}
-    <div className="showcase__text showcase__text--top">
-      <p>
-        The name Maison &amp; Co was born from a desire to convey the feeling of
-        home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
-        of its own, tradition, &amp; timeless values.
-      </p>
-    </div>
+  {/* Texto superior (atrás do gargalo) */}
+  <div className="showcase__text showcase__text--top">
+    <p>
+      The name Maison &amp; Co was born from a desire to convey the feeling of
+      home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
+      of its own, tradition, &amp; timeless values.
+    </p>
+  </div>
 
-    {/* Garrafa horizontal em destaque */}
-    <div className="showcase__bottle-wrapper">
-      <img
-        className="showcase__bottle"
-        src="estilo.png"
-        alt="Garrafa Maison & Co."
-      />
-    </div>
+  {/* Garrafa recortada e alinhada à esquerda */}
+  <div className="showcase__bottle-wrapper">
+    <img
+      className="showcase__bottle"
+      src="estilo.png" /* Use a sua garrafa deitada em PNG transparente */
+      alt="Garrafa Maison & Co."
+    />
+  </div>
 
-    {/* Assinatura caligráfica à direita */}
-    <div className="showcase__script">
-      Maison&amp;Co
-    </div>
+  {/* Assinatura 'Maison & Co' sobreposta */}
+  <div className="showcase__script" aria-hidden="true">
+    <span className="script-shadow">Maison&amp;Co</span>
+    <span className="script-main">Maison&amp;Co</span>
+  </div>
 
-    {/* Texto abaixo da garrafa com selo de cera */}
-    <div className="showcase__text showcase__text--bottom">
-      <p>
-        The name Maison &amp; Co was born from a desire to convey the feeling of
-        home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
-        of its own, tradition, &amp; timeless values.
-      </p>
-      <div className="showcase__seal" aria-hidden="true" />
-    </div>
+  {/* Texto inferior com o selo de cera */}
+  <div className="showcase__text showcase__text--bottom">
+    <p>
+      The name Maison &amp; Co was born from a desire to convey the feeling of
+      home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
+      of its own, tradition, &amp; timeless values.
+    </p>
+    <div className="showcase__seal" />
   </div>
 </section>
 

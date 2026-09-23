@@ -469,173 +469,163 @@ ul {
   margin-bottom: 26px;
   max-width: 44ch;
 }
-
-/* ---------- Showcase (Editorial / Garrafa Deitada) ---------- */
+/* ---------- Showcase Editorial ---------- */
 
 .showcase {
   position: relative;
+  width: 100%;
+  height: 540px;
   background: var(--cream);
-  min-height: 620px;
-  padding: 60px 0;
   overflow: hidden;
+  margin: 40px 0;
+}
+
+/* Marcas d'água de fundo */
+.showcase__watermark {
+  position: absolute;
+  font-family: var(--font-serif), "Times New Roman", serif;
+  color: rgba(45, 36, 28, 0.045);
+  line-height: 0.8;
+  letter-spacing: 0.12em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.showcase__watermark--top {
+  top: 15px;
+  left: 20px;
+  font-size: clamp(100px, 16vw, 210px);
+}
+
+.showcase__watermark--bottom {
+  bottom: 10px;
+  right: 30px;
+  font-size: clamp(100px, 16vw, 210px);
+}
+
+/* Container que posiciona e enquadra a garrafa deitada */
+.showcase__bottle-wrapper {
+  position: absolute;
+  left: -6vw; /* Corta suavemente a base na borda esquerda */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 62vw;
+  max-width: 900px;
+  height: 250px; /* Altura equivalente ao diâmetro do bojo */
+  z-index: 3;
+  pointer-events: none;
   display: flex;
   align-items: center;
 }
 
-/* Marcas d'água de fundo */
-.showcase__watermark-top {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: var(--font-serif), "Times New Roman", serif;
-  font-size: clamp(80px, 15vw, 190px);
-  letter-spacing: 0.18em;
-  color: rgba(32, 26, 20, 0.04);
-  user-select: none;
-  pointer-events: none;
-  line-height: 0.9;
-  z-index: 1;
-}
-
-.showcase__watermark-bottom {
-  position: absolute;
-  bottom: 10px;
-  right: 5%;
-  font-family: var(--font-serif), "Times New Roman", serif;
-  font-size: clamp(80px, 15vw, 190px);
-  letter-spacing: 0.08em;
-  color: rgba(32, 26, 20, 0.04);
-  user-select: none;
-  pointer-events: none;
-  line-height: 0.9;
-  z-index: 1;
-}
-
-/* Container largo que ocupa toda a largura sem travar a garrafa no meio */
-.showcase__container {
-  position: relative;
-  width: 100%;
-  min-height: 480px;
-  z-index: 2;
-}
-
-/* Garrafa colada na borda esquerda da tela */
-.showcase__bottle-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 0; /* Cola perfeitamente no canto esquerdo */
-  transform: translateY(-50%);
-  width: clamp(520px, 60vw, 820px);
-  z-index: 3;
-}
-
+/* Corrige a orientação da imagem para a horizontal perfeita */
 .showcase__bottle {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 60vw;
+  max-height: 860px;
   display: block;
   object-fit: contain;
-  /* Garante que comece colada à esquerda */
-  object-position: left center;
-  filter: drop-shadow(0 20px 30px rgba(32, 26, 20, 0.2));
+  
+  /* Gira a garrafa para a posição horizontal correta */
+  transform-origin: center center;
+  
+  filter: drop-shadow(0 20px 30px rgba(32, 26, 20, 0.22));
 }
 
-/* Textos editoriais */
-.showcase__text {
+
+
+
+/* Texto superior: posicionado logo acima do gargalo */
+.showcase__text--top {
   position: absolute;
-  max-width: 250px;
-  font-size: 11px;
-  line-height: 1.65;
+  top: 26%;
+  left: 48%;
+  max-width: 220px;
+  font-size: 10.5px;
+  line-height: 1.55;
   color: var(--ink-soft);
   z-index: 2;
 }
 
-/* Texto acima do gargalo */
-.showcase__text--top {
-  top: 15%;
-  left: 45%;
-}
-
-/* Texto abaixo do rótulo com o selo */
+/* Texto inferior e selo de cera */
 .showcase__text--bottom {
-  bottom: 8%;
-  left: 180px; /* Alinha abaixo da transição do rótulo */
+  position: absolute;
+  bottom: 14%;
+  left: 24px;
+  max-width: 210px;
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 12px;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  z-index: 4;
 }
 
 .showcase__seal {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #9b2837, #59141c 70%, #360b11 100%);
-  box-shadow: 0 4px 10px rgba(54, 11, 17, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.25);
+  background: radial-gradient(circle at 35% 30%, #a82433, #66121c 65%, #3d070e 100%);
+  box-shadow: 0 4px 12px rgba(50, 8, 14, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.25);
   margin-top: 2px;
 }
 
-/* Assinatura 'Maison & Co' em vermelho sobrepondo o gargalo */
+/* Assinatura 'Maison & Co' alinhada ao gargalo */
 .showcase__script {
   position: absolute;
-  top: 30%;
-  left: 52%; /* Posicionada logo ao lado/atrás da boca da garrafa */
-  font-family: 'Alex Brush', "Brush Script MT", cursive;
-  font-size: clamp(64px, 8vw, 110px);
-  color: #8c1d29;
-  text-shadow: 1.5px 1.5px 0px rgba(32, 26, 20, 0.85);
-  z-index: 4;
-  white-space: nowrap;
+  top: 22%;
+  left: 54%;
+  z-index: 5;
   pointer-events: none;
-  transform: rotate(-3deg);
+  font-family: 'Alex Brush', "Brush Script MT", cursive;
+  font-size: clamp(80px, 8.5vw, 130px);
+  line-height: 1;
+  white-space: nowrap;
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 900px) {
-  .showcase {
-    min-height: auto;
-    padding: 50px 0;
-  }
+.showcase__script .script-shadow {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  color: #1a1614;
+  z-index: 1;
+}
 
-  .showcase__container {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.showcase__script .script-main {
+  position: relative;
+  color: #8c1724;
+  z-index: 2;
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 1024px) {
+  .showcase {
+    height: 480px;
   }
 
   .showcase__bottle-wrapper {
-    position: relative;
-    top: auto;
-    left: 0;
-    transform: none;
-    width: 100%;
-    margin: 30px 0;
+    width: 72vw;
   }
 
-  .showcase__text {
-    position: relative;
-    top: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    max-width: 90%;
-    text-align: center;
-  }
-
-  .showcase__text--bottom {
-    flex-direction: column;
-    align-items: center;
+  .showcase__bottle {
+    height: 72vw;
   }
 
   .showcase__script {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin: 10px 0;
+    left: 48%;
+    top: 25%;
+  }
+
+  .showcase__text--top {
+    left: 42%;
+    top: 18%;
   }
 }
+
+
 
 /* ---------- Testimonials ---------- */
 
