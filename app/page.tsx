@@ -25,23 +25,95 @@ const LIMITED_EDITIONS = [
     price: "R$ 120",
     image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80",
   },
+  {
+    id: 4,
+    name: "teste novo ",
+    description: "Vinho tinto encorpado com notas de groselha preta, especiarias e carvalho francês.",
+    price: "R$ 98",
+    image: "/edicoes/vinho-edicao.png",
+  },
+  {
+    id: 5,
+    name: "aaaa",
+    description: "Vinho branco equilibrado com aromas cítricos marcantes e um final elegante e amanteigado.",
+    price: "R$ 98",
+    image: "https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?w=600&q=80",
+  },
+  {
+    id: 6,
+    name: "Reserva asd Sauvignon",
+    description: "Safra especial com maturação prolongada e notas profundas de frutas silvestres.",
+    price: "R$ 120",
+    image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80",
+  },
 ];
 
-export default function Home() {
-  // Começa com o 2º item (índice 1) expandido por padrão, igual à imagem
-  const [activeIndex, setActiveIndex] = useState(1);
+const ITEMS_PER_PAGE = 3;
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev > 0 ? prev - 1 : LIMITED_EDITIONS.length - 1));
+export default function Home() {
+  const [currentPage, setCurrentPage] = useState(0);
+  // Controla qual dos 3 visíveis está expandido (1 = card do meio expandido por padrão)
+  const [activeSlot, setActiveSlot] = useState(1);
+
+  const totalPages = Math.ceil(LIMITED_EDITIONS.length / ITEMS_PER_PAGE);
+
+  // Pega exatamente 3 vinhos para a página atual
+  const visibleWines = LIMITED_EDITIONS.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+    setActiveSlot(1); // redefine para o vinho do meio ficar aberto
   };
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev < LIMITED_EDITIONS.length - 1 ? prev + 1 : 0));
+  const handleNextPage = () => {
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+    setActiveSlot(1); // redefine para o vinho do meio ficar aberto
   };
 
   return (
     <>
-      {/* ... HERO ... */}
+       {/* HERO */}
+
+      <section className="hero">
+
+        <div
+
+          className="hero__bg"
+
+          style={{
+
+            backgroundImage: "url('/home.jpg')",
+
+          }}
+
+        />
+
+        <div className="hero__scrim" />
+
+        <div className="hero__content">
+
+          <h1 className="serif">Maison &amp; Co.</h1>
+
+          <p>
+
+            Criamos vinhos que celebram o terroir, o tempo e a tradição — para
+
+            quem aprecia a profundidade em cada taça.
+
+          </p>
+
+          <a href="/vinhos" className="btn btn-outline-light">
+
+            EXPLORAR COLEÇÃO
+
+          </a>
+
+        </div>
+
+      </section>
 
       {/* LIMITED EDITIONS */}
       <section className="section limited-section">
@@ -49,18 +121,30 @@ export default function Home() {
           <div className="section-head">
             <h2 className="serif">Edições Limitadas</h2>
             <div className="arrow-nav">
-              <button aria-label="Anterior" onClick={handlePrev}>←</button>
-              <button aria-label="Próximo" onClick={handleNext}>→</button>
+              <button 
+                type="button" 
+                aria-label="Página anterior" 
+                onClick={handlePrevPage}
+              >
+                ←
+              </button>
+              <button 
+                type="button" 
+                aria-label="Próxima página" 
+                onClick={handleNextPage}
+              >
+                →
+              </button>
             </div>
           </div>
 
           <div className="limited-accordion">
-            {LIMITED_EDITIONS.map((item, i) => (
+            {visibleWines.map((item, index) => (
               <ProductCard
-                key={item.id || i}
+                key={item.id}
                 {...item}
-                isActive={activeIndex === i}
-                onMouseEnter={() => setActiveIndex(i)}
+                isActive={activeSlot === index}
+                onMouseEnter={() => setActiveSlot(index)}
               />
             ))}
           </div>
@@ -93,20 +177,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SHOWCASE */}
-      <section className="showcase">
-        <div className="showcase__watermark">
-          <span>VINÍCOLA</span>
-          <span>EST. 1968</span>
-        </div>
-        <img
-          className="showcase__bottle"
-          src="https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=900&q=80"
-          alt="Garrafa Maison & Co."
-        />
-        <p className="showcase__script">Maison&amp;Co</p>
-        <div className="showcase__seal" />
-      </section>
+     {/* SHOWCASE */}
+<section className="showcase">
+  {/* Marcas d'água de fundo */}
+  <div className="showcase__watermark-top">WINERY</div>
+  <div className="showcase__watermark-bottom">EST. 1968</div>
+
+  <div className="showcase__container">
+    {/* Texto acima do gargalo */}
+    <div className="showcase__text showcase__text--top">
+      <p>
+        The name Maison &amp; Co was born from a desire to convey the feeling of
+        home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
+        of its own, tradition, &amp; timeless values.
+      </p>
+    </div>
+
+    {/* Garrafa horizontal em destaque */}
+    <div className="showcase__bottle-wrapper">
+      <img
+        className="showcase__bottle"
+        src="estilo.png"
+        alt="Garrafa Maison & Co."
+      />
+    </div>
+
+    {/* Assinatura caligráfica à direita */}
+    <div className="showcase__script">
+      Maison&amp;Co
+    </div>
+
+    {/* Texto abaixo da garrafa com selo de cera */}
+    <div className="showcase__text showcase__text--bottom">
+      <p>
+        The name Maison &amp; Co was born from a desire to convey the feeling of
+        home and a sense of belonging. The French word Maison means &ldquo;house&rdquo; — a place
+        of its own, tradition, &amp; timeless values.
+      </p>
+      <div className="showcase__seal" aria-hidden="true" />
+    </div>
+  </div>
+</section>
 
       {/* TESTIMONIALS */}
       <section className="section">

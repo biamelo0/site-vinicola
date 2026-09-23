@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+
 :root {
   --cream: #f7f2e6;
   --cream-soft: #efe6d3;
@@ -9,7 +12,6 @@
   --line: rgba(32, 26, 20, 0.14);
   --line-soft: rgba(32, 26, 20, 0.08);
 }
-
 * {
   box-sizing: border-box;
 }
@@ -468,73 +470,171 @@ ul {
   max-width: 44ch;
 }
 
-/* ---------- Showcase (big bottle) ---------- */
+/* ---------- Showcase (Editorial / Garrafa Deitada) ---------- */
 
 .showcase {
   position: relative;
-  padding: 120px 0;
+  background: var(--cream);
+  min-height: 620px;
+  padding: 60px 0;
   overflow: hidden;
-  text-align: center;
-}
-
-.showcase__watermark {
-  position: absolute;
-  inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+}
+
+/* Marcas d'água de fundo */
+.showcase__watermark-top {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-size: clamp(80px, 15vw, 190px);
+  letter-spacing: 0.18em;
+  color: rgba(32, 26, 20, 0.04);
+  user-select: none;
   pointer-events: none;
-  z-index: 0;
+  line-height: 0.9;
+  z-index: 1;
 }
 
-.showcase__watermark span {
-  font-family: var(--font-serif), serif;
-  font-size: 92px;
-  letter-spacing: 0.05em;
-  color: var(--cream-deep);
-  opacity: 0.7;
-  line-height: 1;
+.showcase__watermark-bottom {
+  position: absolute;
+  bottom: 10px;
+  right: 5%;
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-size: clamp(80px, 15vw, 190px);
+  letter-spacing: 0.08em;
+  color: rgba(32, 26, 20, 0.04);
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.9;
+  z-index: 1;
 }
 
-@media (max-width: 720px) {
-  .showcase__watermark span {
-    font-size: 48px;
-  }
+/* Container largo que ocupa toda a largura sem travar a garrafa no meio */
+.showcase__container {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  z-index: 2;
+}
+
+/* Garrafa colada na borda esquerda da tela */
+.showcase__bottle-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0; /* Cola perfeitamente no canto esquerdo */
+  transform: translateY(-50%);
+  width: clamp(520px, 60vw, 820px);
+  z-index: 3;
 }
 
 .showcase__bottle {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  margin: 0 auto;
-  transform: rotate(-8deg);
-  transition: transform 0.6s ease;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* Garante que comece colada à esquerda */
+  object-position: left center;
+  filter: drop-shadow(0 20px 30px rgba(32, 26, 20, 0.2));
 }
 
-.showcase:hover .showcase__bottle {
-  transform: rotate(-4deg) scale(1.02);
+/* Textos editoriais */
+.showcase__text {
+  position: absolute;
+  max-width: 250px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  z-index: 2;
 }
 
-.showcase__script {
-  position: relative;
-  z-index: 1;
-  font-family: "Brush Script MT", cursive;
-  color: var(--wine);
-  font-size: 44px;
-  margin-top: -20px;
+/* Texto acima do gargalo */
+.showcase__text--top {
+  top: 15%;
+  left: 45%;
+}
+
+/* Texto abaixo do rótulo com o selo */
+.showcase__text--bottom {
+  bottom: 8%;
+  left: 180px; /* Alinha abaixo da transição do rótulo */
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
 
 .showcase__seal {
-  position: relative;
-  z-index: 1;
-  width: 46px;
-  height: 46px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--wine-dark);
-  margin: 18px auto 0;
-  box-shadow: 0 6px 16px rgba(69, 18, 26, 0.4);
+  background: radial-gradient(circle at 35% 35%, #9b2837, #59141c 70%, #360b11 100%);
+  box-shadow: 0 4px 10px rgba(54, 11, 17, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.25);
+  margin-top: 2px;
+}
+
+/* Assinatura 'Maison & Co' em vermelho sobrepondo o gargalo */
+.showcase__script {
+  position: absolute;
+  top: 30%;
+  left: 52%; /* Posicionada logo ao lado/atrás da boca da garrafa */
+  font-family: 'Alex Brush', "Brush Script MT", cursive;
+  font-size: clamp(64px, 8vw, 110px);
+  color: #8c1d29;
+  text-shadow: 1.5px 1.5px 0px rgba(32, 26, 20, 0.85);
+  z-index: 4;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: rotate(-3deg);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 900px) {
+  .showcase {
+    min-height: auto;
+    padding: 50px 0;
+  }
+
+  .showcase__container {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .showcase__bottle-wrapper {
+    position: relative;
+    top: auto;
+    left: 0;
+    transform: none;
+    width: 100%;
+    margin: 30px 0;
+  }
+
+  .showcase__text {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .showcase__text--bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .showcase__script {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 10px 0;
+  }
 }
 
 /* ---------- Testimonials ---------- */
