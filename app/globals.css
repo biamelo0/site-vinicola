@@ -504,33 +504,34 @@ ul {
   font-size: clamp(100px, 16vw, 210px);
 }
 
-/* Container que posiciona e enquadra a garrafa deitada */
+/* Container que posiciona a garrafa colada na borda esquerda */
 .showcase__bottle-wrapper {
   position: absolute;
-  left: -6vw; /* Corta suavemente a base na borda esquerda */
+  left: -4vw; /* Se com o zoom cortar muito ou pouco a base, ajuste aqui */
   top: 50%;
   transform: translateY(-50%);
-  width: 62vw;
-  max-width: 900px;
-  height: 250px; /* Altura equivalente ao diâmetro do bojo */
+  
+  /* O ZOOM É CONTROLADO AQUI: aumente a largura para dar zoom */
+  width: 68vw;          /* Experimente aumentar para 72vw ou 75vw para mais zoom */
+  max-width: 980px;     /* Aumente este teto se estiver em monitor grande */
+  
   z-index: 3;
   pointer-events: none;
-  display: flex;
-  align-items: center;
 }
 
-/* Corrige a orientação da imagem para a horizontal perfeita */
+/* Imagem limpa, natural e sem NENHUMA rotação */
 .showcase__bottle {
-  width: auto;
-  height: 60vw;
-  max-height: 860px;
+  width: 100%;
+  height: auto;
   display: block;
   object-fit: contain;
-  
-  /* Gira a garrafa para a posição horizontal correta */
-  transform-origin: center center;
-  
-  filter: drop-shadow(0 20px 30px rgba(32, 26, 20, 0.22));
+  transform: none !important; /* Garante zero rotação */
+  filter: drop-shadow(0 20px 30px rgba(32, 26, 20, 0.25));
+}
+
+/* Hover sem mexer na garrafa */
+.showcase:hover .showcase__bottle {
+  transform: none !important;
 }
 
 
