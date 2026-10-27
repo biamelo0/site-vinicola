@@ -2,6 +2,16 @@
 
 import Link from "next/link";
 
+interface ProductCardProps {
+  name: string;
+  description: string;
+  price?: string;
+  image: string;
+  href?: string;
+  isActive?: boolean;
+  onMouseEnter?: () => void;
+}
+
 export default function ProductCard({
   name,
   description,
@@ -10,7 +20,7 @@ export default function ProductCard({
   href = "/vinhos",
   isActive = false,
   onMouseEnter,
-}) {
+}: ProductCardProps) {
   return (
     <div
       className={`limited-card ${isActive ? "is-active" : ""}`}

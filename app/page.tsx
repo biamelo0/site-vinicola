@@ -3,13 +3,15 @@
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const LIMITED_EDITIONS = [
   {
     id: 1,
     name: "Novo Cabernet Sauvignon",
     description: "Vinho tinto encorpado com notas de groselha preta, especiarias e carvalho francês.",
     price: "R$ 98",
-    image: "/edicoes/vinho-edicao.png",
+    image: `${basePath}/edicoes/vinho-edicao.png`,
   },
   {
     id: 2,
@@ -30,7 +32,7 @@ const LIMITED_EDITIONS = [
     name: "teste novo ",
     description: "Vinho tinto encorpado com notas de groselha preta, especiarias e carvalho francês.",
     price: "R$ 98",
-    image: "/edicoes/vinho-edicao.png",
+    image: `${basePath}/edicoes/vinho-edicao.png`,
   },
   {
     id: 5,
@@ -85,7 +87,7 @@ export default function Home() {
 
           style={{
 
-            backgroundImage: "url('/home.jpg')",
+            backgroundImage: `url('${basePath}/home.jpg')`,
 
           }}
 
@@ -196,7 +198,7 @@ export default function Home() {
   <div className="showcase__bottle-wrapper">
     <img
       className="showcase__bottle"
-      src="estilo.png" /* Use a sua garrafa deitada em PNG transparente */
+      src={`${basePath}/estilo.png`} /* Use a sua garrafa deitada em PNG transparente */
       alt="Garrafa Maison & Co."
     />
   </div>
