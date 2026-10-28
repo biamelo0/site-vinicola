@@ -293,8 +293,8 @@ export default function Home() {
         <div className="join__inner">
           <div className="join__media">
             <img
-              src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80"
-              alt="Garrafa Maison & Co. sobre madeira"
+              src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?w=1200&q=85"
+              alt="Adega histórica da Maison & Co."
             />
           </div>
           <div className="join__text">
