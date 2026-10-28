@@ -18,35 +18,57 @@ const LIMITED_EDITIONS = [
     name: "Maison Chardonnay Gold",
     description: "Vinho branco equilibrado com aromas cítricos marcantes e um final elegante e amanteigado.",
     price: "R$ 115",
-    image: `${basePath}/edicoes/vinho-chardonnay.jpg`,
+    image: `${basePath}/edicoes/vinho-chardonnay.png`,
   },
   {
     id: 3,
     name: "Gran Reserva Cabernet",
     description: "Safra especial com maturação prolongada e notas profundas de frutas silvestres.",
     price: "R$ 145",
-    image: `${basePath}/edicoes/vinho-reserva.jpg`,
+    image: `${basePath}/edicoes/vinho-reserva.png`,
   },
   {
     id: 4,
     name: "Rosé de Provence Privé",
     description: "Vinho rosé delicado com frescor mineral e notas florais e de frutas vermelhas frescas.",
     price: "R$ 108",
-    image: `${basePath}/edicoes/vinho-rose.jpg`,
+    image: `${basePath}/edicoes/vinho-rose.png`,
   },
   {
     id: 5,
     name: "Chardonnay Cuvée Speciale",
     description: "Edição especial com passagem por barrica e textura aveludada incomparável.",
     price: "R$ 130",
-    image: `${basePath}/edicoes/vinho-chardonnay.jpg`,
+    image: `${basePath}/edicoes/vinho-chardonnay.png`,
   },
   {
     id: 6,
     name: "Reserva Seleção do Enólogo",
     description: "Lote exclusivo numerado, colheita manual e complexidade aromática única.",
     price: "R$ 160",
-    image: `${basePath}/edicoes/vinho-edicao.png`,
+    image: `${basePath}/edicoes/vinho-reserva.png`,
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "O vinho não é criado — é revelado. Cada safra é um diálogo entre o vinhedo e o enólogo, e o nosso papel é apenas escutar e celebrar a natureza.",
+    author: "Matteo Rossi",
+    role: "Sommelier Internacional & Crítico",
+    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=85",
+  },
+  {
+    quote: "A visita guiada aos vinhedos históricos e a degustação na adega foram inesquecíveis. O Gran Reserva possui uma complexidade e elegância raras.",
+    author: "Elena Vasconcelos",
+    role: "Membro Signature do Wine Club",
+    image: "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=1200&q=85",
+  },
+  {
+    quote: "Um brinde ao autêntico terroir italiano. Cada garrafa da Maison carrega séculos de paixão, dedicação e sofisticação em cada detalhe.",
+    author: "Arthur & Sophia W.",
+    role: "Colecionadores de Vinhos",
+    image: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&q=85",
   },
 ];
 
@@ -56,6 +78,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   // Controla qual dos 3 visíveis está expandido (1 = card do meio expandido por padrão)
   const [activeSlot, setActiveSlot] = useState(1);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const totalPages = Math.ceil(LIMITED_EDITIONS.length / ITEMS_PER_PAGE);
 
@@ -73,6 +96,14 @@ export default function Home() {
   const handleNextPage = () => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
     setActiveSlot(1); // redefine para o vinho do meio ficar aberto
+  };
+
+  const handlePrevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev > 0 ? prev - 1 : TESTIMONIALS.length - 1));
+  };
+
+  const handleNextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev < TESTIMONIALS.length - 1 ? prev + 1 : 0));
   };
 
   return (
@@ -159,8 +190,8 @@ export default function Home() {
           <div className="split">
             <div className="split__media">
               <img
-                src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=800&q=80"
-                alt="Barris de carvalho na adega"
+                src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=85"
+                alt="Vinhedos históricos da Maison ao entardecer"
               />
             </div>
             <div className="split__text">
@@ -226,8 +257,8 @@ export default function Home() {
           <div className="testimonial">
             <div className="testimonial__media">
               <img
-                src="https://images.unsplash.com/photo-1529963183134-61a90db47eaf?w=800&q=80"
-                alt="Amigos reunidos à mesa na vinícola"
+                src={TESTIMONIALS[currentTestimonial].image}
+                alt={TESTIMONIALS[currentTestimonial].author}
               />
             </div>
             <div>
@@ -236,14 +267,20 @@ export default function Home() {
               </div>
               <p className="testimonial__quote-mark">“</p>
               <blockquote>
-                O vinho não é criado — é revelado. Cada safra é um diálogo
-                entre o vinhedo e o enólogo, e o nosso papel é escutar.
+                {TESTIMONIALS[currentTestimonial].quote}
               </blockquote>
               <div className="testimonial__foot">
-                <span className="testimonial__sign">— John W.</span>
+                <div className="testimonial__author-box">
+                  <span className="testimonial__sign">— {TESTIMONIALS[currentTestimonial].author}</span>
+                  <span className="testimonial__role">{TESTIMONIALS[currentTestimonial].role}</span>
+                </div>
                 <div className="arrow-nav">
-                  <button aria-label="Anterior">←</button>
-                  <button aria-label="Próximo">→</button>
+                  <button type="button" aria-label="Anterior" onClick={handlePrevTestimonial}>
+                    ←
+                  </button>
+                  <button type="button" aria-label="Próximo" onClick={handleNextTestimonial}>
+                    →
+                  </button>
                 </div>
               </div>
             </div>

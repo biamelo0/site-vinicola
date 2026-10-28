@@ -85,7 +85,7 @@ export default function NossaHistoriaPage() {
             </div>
             <div className="split__media">
               <img
-                src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=800&q=80"
+                src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&q=85"
                 alt="Vinhedos ao entardecer"
               />
             </div>
