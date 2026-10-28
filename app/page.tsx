@@ -79,6 +79,7 @@ export default function Home() {
   // Controla qual dos 3 visíveis está expandido (1 = card do meio expandido por padrão)
   const [activeSlot, setActiveSlot] = useState(1);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [joined, setJoined] = useState(false);
 
   const totalPages = Math.ceil(LIMITED_EDITIONS.length / ITEMS_PER_PAGE);
 
@@ -176,6 +177,7 @@ export default function Home() {
               <ProductCard
                 key={item.id}
                 {...item}
+                href={`/vinhos?id=${item.id}`}
                 isActive={activeSlot === index}
                 onMouseEnter={() => setActiveSlot(index)}
               />
@@ -298,13 +300,31 @@ export default function Home() {
             />
           </div>
           <div className="join__text">
+            <span className="eyebrow" style={{ color: "var(--cream-soft)", opacity: 0.85 }}>
+              Newsletter &amp; Clube
+            </span>
             <h2 className="serif">Junte-se a uma comunidade de amantes do vinho</h2>
-            <form className="join-form">
-              <input type="email" placeholder="Seu e-mail" required />
-              <button type="submit" className="btn btn-dark">
-                JUNTAR-SE
-              </button>
-            </form>
+            <p className="join__desc">
+              Receba convites prioritários para safras especiais, degustações privadas e novidades exclusivas da vinícola.
+            </p>
+            {joined ? (
+              <p className="join__success">✓ Obrigado por se juntar à nossa comunidade!</p>
+            ) : (
+              <form
+                className="join-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setJoined(true);
+                }}
+              >
+                <div className="join-form__field">
+                  <input type="email" placeholder="Seu e-mail" required />
+                </div>
+                <button type="submit" className="join-form__btn">
+                  JUNTAR-SE
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>

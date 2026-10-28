@@ -2,34 +2,35 @@ const TIMELINE = [
   {
     year: "1968",
     title: "Um sonho de família",
-    text: "João e Marta Maison plantam as primeiras videiras nas colinas de Roma, com a ambição de criar vinhos que contassem a história da própria terra.",
+    text: "João e Marta Maison plantam as primeiras videiras nas colinas históricas, com a ambição de criar vinhos que expressassem a identidade viva da própria terra.",
   },
   {
     year: "1985",
     title: "Primeira colheita premiada",
-    text: "O Sangiovese Riserva da vinícola recebe seu primeiro reconhecimento internacional, consolidando o nome Maison & Co. entre os produtores da região.",
+    text: "O Sangiovese Gran Riserva da vinícola recebe seu primeiro reconhecimento internacional em Bordeaux, consolidando a Maison & Co. entre as grandes casas vinícolas.",
   },
   {
     year: "2004",
-    title: "Expansão do terroir",
-    text: "Novos vinhedos são adquiridos na encosta voltada a leste, ideais para castas brancas, ampliando o portfólio da casa.",
+    title: "Expansão do terroir & Novas castas",
+    text: "Novos vinhedos de encosta são adquiridos em solos argilo-calcários, ideais para o cultivo de Chardonnay e castas nobres mediterrâneas.",
   },
   {
     year: "2023",
-    title: "Tradição e inovação",
-    text: "A terceira geração assume a vinificação, unindo métodos ancestrais a técnicas sustentáveis de baixo impacto ambiental.",
+    title: "Tradição e sustentabilidade",
+    text: "A terceira geração da família assume a enologia, unindo processos ancestrais de vinificação em carvalho a práticas sustentáveis e colheita estritamente manual.",
   },
 ];
 
 export default function NossaHistoriaPage() {
   return (
     <>
+      {/* HERO: Vinhedos históricos ao entardecer */}
       <section className="page-hero">
         <div
           className="page-hero__bg"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80')",
+              "url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&q=85')",
           }}
         />
         <div className="page-hero__scrim" />
@@ -39,21 +40,23 @@ export default function NossaHistoriaPage() {
         </div>
       </section>
 
+      {/* INTRODUÇÃO */}
       <section className="section">
         <div className="container center-copy">
           <p>
-            Nossa vinícola começou como um sonho de família — a visão de criar
-            vinhos que refletissem a alma da nossa terra. Décadas depois,
-            seguimos essa tradição, unindo paixão e inovação para trazer
-            vinhos com autenticidade e elegância a cada garrafa.
+            Nossa vinícola começou como um sonho de família — a visão de cultivar
+            videiras que capturassem a alma do nosso terroir e a passagem paciente das
+            estações. Mais de cinco décadas depois, honramos esse legado mantendo a colheita
+            manual, o respeito pelo solo e a maturação lenta em barricas de carvalho francês.
           </p>
         </div>
       </section>
 
+      {/* TIMELINE */}
       <section className="section section--tight">
         <div className="container">
           <div className="section-head">
-            <h2 className="serif">Uma linha do tempo</h2>
+            <h2 className="serif">Cinco décadas de tradição</h2>
           </div>
           <div className="timeline">
             {TIMELINE.map((item) => (
@@ -69,15 +72,20 @@ export default function NossaHistoriaPage() {
         </div>
       </section>
 
+      {/* TERROIR & VINHEDOS: Uvas e parreirais históricos */}
       <section className="section">
         <div className="container">
           <div className="split">
             <div className="split__text">
+              <div className="eyebrow" style={{ color: "var(--wine)", marginBottom: "8px" }}>
+                Origem &amp; Terroir
+              </div>
               <h2 className="serif">Terroir &amp; Vinhedos</h2>
               <p>
-                As colinas de Roma oferecem solo argiloso-calcário e um
-                microclima único, moldando a personalidade de cada casta que
-                cultivamos com respeito ao ritmo das estações.
+                Nossos vinhedos repousam sobre encostas de solo argilo-calcário com excelente
+                drenagem natural, beneficiando-se de dias ensolarados e noites frescas.
+                Esse microclima privilegiado proporciona uma maturação lenta e equilibrada
+                das uvas, conferindo aromas complexos e acidez viva a cada safra.
               </p>
               <a href="/visitar" className="btn btn-wine">
                 CONHECER OS VINHEDOS
@@ -85,32 +93,37 @@ export default function NossaHistoriaPage() {
             </div>
             <div className="split__media">
               <img
-                src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&q=85"
-                alt="Vinhedos ao entardecer"
+                src="https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?w=1200&q=85"
+                alt="Cachos de uvas maturando nas videiras sob o sol do terroir histórico"
               />
             </div>
           </div>
         </div>
       </section>
 
+      {/* PROCESSO DE VINIFICAÇÃO: Barris de carvalho na adega subterrânea */}
       <section className="section section--tight">
         <div className="container">
           <div className="split">
             <div className="split__media">
               <img
-                src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=800&q=80"
-                alt="Barris de carvalho na adega"
+                src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?w=1200&q=85"
+                alt="Barris de carvalho francês e envelhecimento na adega subterrânea histórica"
               />
             </div>
             <div className="split__text">
+              <div className="eyebrow" style={{ color: "var(--wine)", marginBottom: "8px" }}>
+                Arte &amp; Maturação
+              </div>
               <h2 className="serif">Processo de Vinificação</h2>
               <p>
-                Colhemos à mão, fermentamos em ritmo natural e envelhecemos em
-                carvalho francês — cada etapa pensada para preservar a
-                identidade da uva e do lugar de onde ela vem.
+                Colhemos as uvas manualmente nas primeiras horas da manhã, fermentamos em
+                temperatura controlada e realizamos a maturação paciente em barricas de carvalho
+                francês nas galerias subterrâneas da vinícola. Cada etapa une ciência, intuição
+                e a nobreza do tempo para criar rótulos que evoluem com elegância na garrafa.
               </p>
-              <a href="#" className="btn btn-wine">
-                VER CERTIFICADOS
+              <a href="/vinhos" className="btn btn-wine">
+                EXPLORAR OS VINHOS
               </a>
             </div>
           </div>
